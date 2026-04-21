@@ -14,9 +14,6 @@ __pycache__/
 
 generador.py
 
-*.xlsx
-*.py
-
 scripts/**
 scripts/cargar_medicamentos.py
 
