@@ -3,9 +3,6 @@ contexto/
 .context/
 .claude/
 
-# Scripts de inicialización
-create_admin.py
-
 # Entorno y variables
 .venv/
 .env
