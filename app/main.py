@@ -92,9 +92,6 @@ app = FastAPI(
 )
 
 # ---------------------------------------------------------------------------
-# CORS — Permite peticiones desde el frontend React (localhost:5173 en dev).
-# En producción reemplaza las URLs de allow_origins con el dominio real.
-# ---------------------------------------------------------------------------
 # CORS — Configuración dinámica según entorno
 import os
 
@@ -109,6 +106,9 @@ allowed_origins = [url.strip() for url in FRONTEND_URL.split(",") if url.strip()
 # Agregar localhost para desarrollo local si no está
 if "http://localhost:5173" not in allowed_origins:
     allowed_origins.append("http://localhost:5173")
+
+# DEBUG: Mostrar en logs qué orígenes están permitidos
+print(f"✓ CORS allowed origins: {allowed_origins}")
 
 app.add_middleware(
     CORSMiddleware,
