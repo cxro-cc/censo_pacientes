@@ -5,8 +5,8 @@ echo "Esperando a que PostgreSQL esté lista..."
 sleep 10
 
 echo "Creando usuario administrador..."
-python create_admin.py || echo "Admin ya existe o hubo un error"
+python create_admin.py 2>/dev/null || true
 
 echo "Iniciando servidor..."
-# Railway inyecta la variable PORT automáticamente
-exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Usar PORT si existe, sino usar 8000
+exec uvicorn app.main:app --host 0.0.0.0 --port "${PORT:-8000}"
