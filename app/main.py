@@ -98,10 +98,15 @@ app = FastAPI(
 # CORS — Configuración dinámica según entorno
 import os
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+# URLs permitidas (desarrollo y producción)
+FRONTEND_URL = os.getenv(
+    "FRONTEND_URL",
+    "http://localhost:5173,https://censo-frontend-production-dab7.up.railway.app"
+)
+
 allowed_origins = [url.strip() for url in FRONTEND_URL.split(",") if url.strip()]
 
-# Agregar localhost para desarrollo local
+# Agregar localhost para desarrollo local si no está
 if "http://localhost:5173" not in allowed_origins:
     allowed_origins.append("http://localhost:5173")
 
