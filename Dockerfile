@@ -13,8 +13,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Hacer el script ejecutable
-RUN chmod +x init.sh
-
-# Usar el script de inicialización
-CMD ["./init.sh"]
+# Script de inicio que maneja todo
+CMD python create_admin.py 2>/dev/null || true && \
+    uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
